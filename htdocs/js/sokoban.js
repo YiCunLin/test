@@ -123,7 +123,7 @@ let tileset = {
       height: 32,
     },
 
-    [SOKOBAN.GOAL]: { 
+    [SOKOBAN.GOAL]: {
       x: 32,
       y: 32,
       width: 32,
@@ -369,7 +369,7 @@ let prototypeGameState = {
   pushBoxDown: function (cell) {
     let manCell = this.cellUp(cell);
     let boxCell = this.cellDown(cell);
-  
+
     return this
       .moveBox(cell, boxCell)
       .moveMan(manCell, cell);
@@ -378,7 +378,7 @@ let prototypeGameState = {
   pushBoxLeft: function (cell) {
     let manCell = this.cellRight(cell);
     let boxCell = this.cellLeft(cell);
-  
+
     return this
       .moveBox(cell, boxCell)
       .moveMan(manCell, cell);
@@ -387,7 +387,7 @@ let prototypeGameState = {
   pushBoxRight: function (cell) {
     let manCell = this.cellLeft(cell);
     let boxCell = this.cellRight(cell);
-  
+
     return this
       .moveBox(cell, boxCell)
       .moveMan(manCell, cell);
@@ -396,7 +396,7 @@ let prototypeGameState = {
   pushBoxUp: function (cell) {
     let manCell = this.cellDown(cell);
     let boxCell = this.cellUp(cell);
-  
+
     return this
       .moveBox(cell, boxCell)
       .moveMan(manCell, cell);
@@ -410,7 +410,8 @@ let prototypeGameState = {
 
   putBoxOnGoal: function ({x, y}) {
     this.level[y] = replaceAt(this.level[y], x, SOKOBAN.BOX_ON_GOAL);
-
+    if (this.level[SOKOBAN.GOAL] == this.level[SOKOBAN.BOX_ON_GOAL])
+    alert('123');
     return this;
   },
 
@@ -467,7 +468,7 @@ let drawBoardGrid = (ctx) => {
   }
 
   // 繪出格線
-  ctx.stroke();       
+  ctx.stroke();
 };
 
 /**
@@ -578,7 +579,7 @@ let controlPane = (sokoban) => {
 
   let section = document.createElement('section');
   section.style.gridArea = '5 / 2 / 6 / 5';
-  
+
   choices.forEach((text, level) => {
     let btn = document.createElement('button');
 
